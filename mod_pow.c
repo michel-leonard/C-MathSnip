@@ -1,5 +1,5 @@
 // return (n ^ exp) % mod without using numbers larger than 32 bits
-unsigned mod_pow(unsigned n, unsigned exp, unsigned mod) {
+unsigned mod_pow(unsigned n, unsigned exp, const unsigned mod) {
     unsigned a, b, res = 1;
     for (n %= mod; exp; exp >>= 1) {
             if (exp & 1)
