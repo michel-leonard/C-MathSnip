@@ -7,6 +7,7 @@ int kronecker(unsigned a, unsigned b) {
         if (res & 1) {
             for (c = 0; !(b & 1); ++c, b >>= 1);
             // When b is odd Jacobi and Kronecker symbols are identical, in factorization algorithms b is often the prime.
+            // When b is an odd prime, the Jacobi symbol is equal to the Legendre symbol. 
             for (res = c & 1 ? s[a & 7] : 1; a; c & 1 ? res *= s[b & 7] : 0, a & b & 2 ? res = -res : 0, c = b % a, b = a, a = c)
                 for (c = 0; !(a & 1); ++c, a >>= 1);
             res = b == 1 ? res : 0;
