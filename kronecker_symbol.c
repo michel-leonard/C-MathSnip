@@ -1,13 +1,13 @@
 //  This function returns the Kronecker symbol of A and B.
 int kronecker(unsigned a, unsigned b) {
-    static const int tab[8] = {0, 1, 0, -1, 0, -1, 0, 1};
+    static const int s[8] = {0, 1, 0, -1, 0, -1, 0, 1};
     unsigned c;
     int res = (int) (a | b);
     if (a && b)
         if (res & 1) {
             for (c = 0; !(b & 1); ++c, b >>= 1);
-            // When b is odd the Jacobi symbol and Kronecker symbol are identical.
-            for (res = c & 1 ? tab[a & 7] : 1; a; c & 1 ? res *= tab[b & 7] : 0, a & b & 2 ? res = -res : 0, c = b % a, b = a, a = c)
+            // for for then ... res *= Jacobi symbol A/B ]-[ when b is odd the Jacobi symbol and Kronecker symbol are identical.
+            for (res = c & 1 ? s[a & 7] : 1; a; c & 1 ? res *= s[b & 7] : 0, a & b & 2 ? res = -res : 0, c = b % a, b = a, a = c)
                 for (c = 0; !(a & 1); ++c, a >>= 1);
             res = b == 1 ? res : 0;
         } else res = 0;
