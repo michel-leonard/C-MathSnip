@@ -21,12 +21,12 @@ unsigned tonelli_shanks(unsigned n, const unsigned mod) {
             for (; b != mod_pow(d, b >> 1, mod); ++d);
             for (b = mod_pow(d, a, mod), r = mod_pow(n, (a + 1) >> 1, mod), e = mod_pow(n, a, mod), f = c; e != 1; f = a){
                 for(a = 0, c = e, --f; c != 1 && a < f; ++a)
-                    for (d = c, n = c, c = 0; n; n & 1 ? c = (c + d) % mod : 0, d = d << 1 % mod, n >>= 1);
+                    for (d = c, n = c, c = 0; n; n & 1 ? c = (c + d) % mod : 0, d = d << 1 % mod, n >>= 1); // c = (c * c) % mod ;
                 for(d = b, n = f - a; n--;)
-                    for (c = d, f = d, d = 0; f; f & 1 ? d = (d + c) % mod : 0, c = c << 1 % mod, f >>= 1);
-                for (c = r, f = d, r = 0; f; f & 1 ? r = (r + c) % mod : 0, c = c << 1 % mod, f >>= 1);
-                for (c = d, f = d, b = 0; f; f & 1 ? b = (b + c) % mod : 0, c = c << 1 % mod, f >>= 1);
-                for (c = e, f = b, e = 0; f; f & 1 ? e = (e + c) % mod : 0, c = c << 1 % mod, f >>= 1);
+                    for (c = d, f = d, d = 0; f; f & 1 ? d = (d + c) % mod : 0, c = c << 1 % mod, f >>= 1); // d = (d * d) % mod ;
+                for (c = r, f = d, r = 0; f; f & 1 ? r = (r + c) % mod : 0, c = c << 1 % mod, f >>= 1); // r = (r * d) % mod ;
+                for (c = d, f = d, b = 0; f; f & 1 ? b = (b + c) % mod : 0, c = c << 1 % mod, f >>= 1); // b = (d * d) % mod ;
+                for (c = e, f = b, e = 0; f; f & 1 ? e = (e + c) % mod : 0, c = c << 1 % mod, f >>= 1); // e = (e * b) % mod ;
             }
         }
     }
