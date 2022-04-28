@@ -1,4 +1,4 @@
-// return (n ^ exp) % mod without using numbers larger than 32 bits.
+// return (n ^ exp) % mod.
 unsigned mod_pow(unsigned n, unsigned exp, const unsigned mod) {
     unsigned a, b, res = 1;
     for (n %= mod; exp; exp >>= 1) {
@@ -9,7 +9,6 @@ unsigned mod_pow(unsigned n, unsigned exp, const unsigned mod) {
     return res;
 }
 
-// without using numbers larger than 32 bits.
 // return root such that (root * root) % mod congruent to n % mod.
 // return mod if n is a quadratic non-residue modulo mod.
 unsigned tonelli_shanks(unsigned n, const unsigned mod) {
