@@ -37,7 +37,7 @@ static unsigned tonelli_shanks(unsigned n, const unsigned mod) {
             }
         }
     }
-    return r; // Time complexity is O(sqrt(p) * log(p)).
+    return r;
 }
 
 #include <assert.h>
@@ -53,3 +53,6 @@ int main() {
     n = 5258, mod = 3851, root = tonelli_shanks(n, mod);
     assert(root == 3851); // no solution to the congruence exists.
 }
+
+
+// The algorithm requires O(log a + r * r) multiplications modulo a, where r is the power of 2 dividing a − 1.
