@@ -41,7 +41,6 @@ static unsigned tonelli_shanks(unsigned n, const unsigned mod) {
 }
 
 #include <assert.h>
-#include <assert.h>
 int main() {
     unsigned n, mod, root ; /* root_2 = mod - root */
 
@@ -55,4 +54,4 @@ int main() {
     assert(root == 3851); // no solution to the congruence exists.
 }
 
-// A is assumed prime, the algorithm requires O(log A + r * r) multiplications modulo A, where r is the power of 2 dividing A − 1.
+// A is assumed odd prime, the algorithm requires O(log A + r * r) multiplications modulo A, where r is the power of 2 dividing A − 1.
