@@ -11,9 +11,9 @@ unsigned mod_pow(unsigned n, unsigned exp, const unsigned mod) {
 
 // without using numbers larger than 32 bits.
 // return root such that (root * root) % mod congruent to n % mod.
-// return mod if n is a quadratic non-residue modulo mod, no solution to the congruence exists.
+// return mod if n is a quadratic non-residue modulo mod.
 unsigned tonelli_shanks(unsigned n, const unsigned mod) {
-    unsigned a = mod - 1, b = a, c = 0, d = 2, e, f, r = mod; // default return value.
+    unsigned a = mod - 1, b = a, c = 0, d = 2, e, f, r = mod; // r = return value if no solution to the congruence exists.
     if (mod_pow(n, b >> 1, mod) == 1) {
         for (; !(a & 1); ++c, a >>= 1);
         if (c == 1)
