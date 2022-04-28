@@ -4,7 +4,7 @@ unsigned gcd(unsigned a, unsigned b){
     return a | b;
 }
 
-// return the that was multiplied by itself to reach the number.
+// return the number that was multiplied by itself to reach the N.
 unsigned square_root(unsigned n){
     unsigned a = n > 0, b;
     if (n > 1) for (a = n >> 1, b = (a + n / a) >> 1; b < a; a = b, b = (a + n / a) >> 1);
@@ -12,10 +12,10 @@ unsigned square_root(unsigned n){
 }
 
 #include <limits.h>
-// return the distance from zero of the number.
-unsigned int absolute(int v){
-    const int mask = v >> (sizeof(int) * CHAR_BIT - 1);
-    return (v + mask) ^ mask;
+// return the distance from zero of N.
+unsigned int absolute(int n){
+    const int mask = n >> (sizeof(int) * CHAR_BIT - 1);
+    return (n + mask) ^ mask;
 }
 
 #include <stdlib.h>
