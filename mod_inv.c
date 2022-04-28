@@ -1,27 +1,31 @@
 // return a modular multiplicative inverse of n with respect to the modulus.
 // return 0 if the linear congruence has no solutions.
 unsigned mod_inv(unsigned n, const unsigned mod) {
-    unsigned b = mod, c = b, d = 0, e = 0, f = 1, g, h;
-    for (n *= b > 1; n > 1 && (n *= b > 0); f = h, d = (d & 3) | (d & 1) << 2) {
-        h = e, e *= n / (g = b);
-        b = n % b, n = g;
-        d = (d & 6) | (d & 2) >> 1;
-        g = d > 1 && d < 6 ;
-        d = (d & 5) | (g || f > e ? (d & 4) >> 1 : ~d & 2);
-        e = g ? e + f : f > e ? f - e : e - f;
+    unsigned a = mod, b = a, c = 0, d = 0, e = 1, f, g;
+    for (n *= a > 1; n > 1 && (n *= a > 0); e = g, c = (c & 3) | (c & 1) << 2) {
+        g = d, d *= n / (f = a);
+        a = n % a, n = f;
+        c = (c & 6) | (c & 2) >> 1;
+        f = c > 1 && c < 6;
+        c = (c & 5) | (f || e > d ? (c & 4) >> 1 : ~c & 2);
+        d = f ? d + e : e > d ? e - d : d - e;
     }
-    return n ? d & 4 ? c - f : f : 0;
+    return n ? c & 4 ? b - e : e : 0;
 }
 
 #include <assert.h>
-int main(void){
-    unsigned n, mod, res ;
 
-    n = 57, mod = 107 ;
-    res = mod_inv(n, mod); assert(res == 92); //  92 is a solution of the linear congruence.
+int main(void) {
+    unsigned n, mod, res;
 
-    n = 66, mod = 123 ;
-    res = mod_inv(n, mod); assert(res == 0); // 66 does note have an inverse modulo 123.
+    n = 57, mod = 107;
+    res = mod_inv(n, mod);
+    assert(res == 92); //  92 is a solution of the linear congruence.
+
+    n = 66, mod = 123;
+    res = mod_inv(n, mod);
+    assert(res == 0); // 66 does note have an inverse modulo 123.
+
 }
 
 /*
