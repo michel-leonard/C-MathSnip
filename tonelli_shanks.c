@@ -37,7 +37,7 @@ static unsigned tonelli_shanks(unsigned n, const unsigned mod) {
             }
         }
     }
-    return r;
+    return r; // Time complexity is O(sqrt(p) * log(p)).
 }
 
 #include <assert.h>
