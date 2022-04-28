@@ -17,7 +17,7 @@ static unsigned mod_pow(unsigned n, unsigned exp, const unsigned mod) {
 }
 
 // return root such that (root * root) % mod congruent to n % mod.
-// return mod if n is a quadratic non-residue modulo mod, no solution to the congruence exists.
+// return mod (the default value of a) if no solution to the congruence exists.
 static unsigned tonelli_shanks(unsigned n, const unsigned mod) {
     unsigned a = mod, b = a - 1, c, d = b, e = 0, f = 2, g;
     if (mod_pow(n, b >> 1, mod) == 1) {
@@ -40,6 +40,7 @@ static unsigned tonelli_shanks(unsigned n, const unsigned mod) {
     return a;
 }
 
+#include <assert.h>
 #include <assert.h>
 int main() {
     unsigned n, mod, root ; /* root_2 = mod - root */
