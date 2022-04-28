@@ -1,10 +1,11 @@
+// return (n ^ exp) % mod without using numbers larger than 32 bits.
 unsigned mod_pow(unsigned n, unsigned exp, const unsigned mod) {
     unsigned a, b, res = 1;
-    if (mod) for (n %= mod; exp; exp >>= 1) {
-        if (exp & 1)
-            for (a = res, b = n, res = 0; b; b & 1 ? res = (res + a) % mod : 0, a = a << 1 % mod, b >>= 1);
-        for (a = n, b = n, n = 0; b; b & 1 ? n = (n + a) % mod : 0, a = a << 1 % mod, b >>= 1);
-    }
+    for (n %= mod; exp; exp >>= 1) {
+            if (exp & 1)
+                for (a = res, b = n, res = 0; b; b & 1 ? res = (res + a) % mod : 0, a = a << 1 % mod, b >>= 1); // res = (res * x) % n
+            for (a = n, b = n, n = 0; b; b & 1 ? n = (n + a) % mod : 0, a = a << 1 % mod, b >>= 1); // x = (x * x) % n
+        }
     return res;
 }
 
