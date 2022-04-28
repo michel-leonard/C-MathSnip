@@ -1,5 +1,5 @@
 // return (lhs * rhs) % mod
-static unsigned multiplication_modulo(unsigned a, unsigned b, unsigned mod) {
+static unsigned multiplication_modulo(unsigned a, unsigned b, const unsigned mod) {
     unsigned res = 0, tmp;
     for (b %= mod; a; a & 1 ? b >= mod - res ? res -= mod : 0, res += b : 0, a >>= 1, (tmp = b) >= mod - b ? tmp -= mod : 0, b += tmp);
     return res % mod;
