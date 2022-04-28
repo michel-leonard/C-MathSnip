@@ -4,7 +4,7 @@ unsigned gcd(unsigned a, unsigned b){
     return a | b;
 }
 
-// return the number that was multiplied by itself to reach the N.
+// return the number that was multiplied by itself to reach N.
 unsigned square_root(unsigned n){
     unsigned a = n > 0, b;
     if (n > 1) for (a = n >> 1, b = (a + n / a) >> 1; b < a; a = b, b = (a + n / a) >> 1);
