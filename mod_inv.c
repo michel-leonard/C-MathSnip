@@ -25,7 +25,6 @@ int main(void) {
     n = 66, mod = 123;
     res = mod_inv(n, mod);
     assert(res == 0); // 66 does note have an inverse modulo 123.
-
 }
 
 /*
