@@ -1,11 +1,18 @@
+// return (lhs * rhs) % mod
+static unsigned multiplication_modulo(unsigned lhs, unsigned rhs, const unsigned mod) {
+    unsigned res = 0;
+    for (lhs %= mod, rhs%= mod; rhs; (rhs & 1) ? (res = (res + lhs) % mod) : 0, lhs = (lhs << 1) % mod, rhs >>= 1);
+    return res;
+}
+
 // return (n ^ exp) % mod
-unsigned mod_pow(unsigned n, unsigned exp, const unsigned mod) {
-    unsigned a, b, res = 1;
+static unsigned mod_pow(unsigned n, unsigned exp, const unsigned mod) {
+    unsigned res = 1;
     for (n %= mod; exp; exp >>= 1) {
-            if (exp & 1)
-                for (a = res, b = n, res = 0; b; b & 1 ? res = (res + a) % mod : 0, a = a << 1 % mod, b >>= 1); // res = (res * x) % n ;
-            for (a = n, b = n, n = 0; b; b & 1 ? n = (n + a) % mod : 0, a = a << 1 % mod, b >>= 1); // x = (x * x) % n ;
-        }
+        if (exp & 1)
+            res = multiplication_modulo(res, n, mod);
+        n = multiplication_modulo(n, n, mod);
+    }
     return res;
 }
 
