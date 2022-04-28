@@ -11,6 +11,14 @@ unsigned square_root(unsigned n){
     return a ;
 }
 
+// return the number that, when multiplied by itself nth times, makes N.
+unsigned nth_root(const unsigned n, const unsigned nth) {
+    unsigned a = n, c, d, r = nth ? n + (n > 1) : n == 1 ;
+    for (; a < r; c = a + (nth - 1) * r, a = c / nth)
+        for (r = a, a = n, d = nth - 1; d && (a /= r); --d);
+    return r;
+}
+
 #include <limits.h>
 // return the distance from zero of N.
 unsigned int absolute(int n){
