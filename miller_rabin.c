@@ -8,7 +8,7 @@ static positive_number multiplication_modulo(positive_number a, positive_number 
     return res % mod;
 }
 
-static int miller_rabin(positive_number n, int k) {
+static int rabin_miller(positive_number n, int k) {
     positive_number a = 0, b, c, d, e, f, g; int h, i;
     if ((n == 1) == (n & 1)) return n == 2;
     for (b = c = n - 1, h = 0; !(b & 1); b >>= 1, ++h);
@@ -26,5 +26,5 @@ static int miller_rabin(positive_number n, int k) {
 }
 
 int main(void){
-    return miller_rabin(5722419224120611, 20);
+    return rabin_miller(5722419224120611, 20);
 }
