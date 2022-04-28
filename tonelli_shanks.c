@@ -54,5 +54,4 @@ int main() {
     assert(root == 3851); // no solution to the congruence exists.
 }
 
-
-// The algorithm requires O(log a + r * r) multiplications modulo a, where r is the power of 2 dividing a − 1.
+// A is assumed prime, the algorithm requires O(log A + r * r) multiplications modulo A, where r is the power of 2 dividing A − 1.
