@@ -19,25 +19,25 @@ static unsigned mod_pow(unsigned n, unsigned exp, const unsigned mod) {
 // return root such that (root * root) % mod congruent to n % mod.
 // return mod if n is a quadratic non-residue modulo mod, no solution to the congruence exists.
 static unsigned tonelli_shanks(unsigned n, const unsigned mod) {
-    unsigned a = mod - 1, b = a, c = 0, d = 2, e, f, r = mod;
+    unsigned a = mod, b = a - 1, c, d = b, e = 0, f = 2, g;
     if (mod_pow(n, b >> 1, mod) == 1) {
-        for (; !(a & 1); ++c, a >>= 1);
-        if (c == 1)
-            r = mod_pow(n, (mod + 1) >> 2, mod);
+        for (; !(d & 1); ++e, d >>= 1);
+        if (e == 1)
+            a = mod_pow(n, (mod + 1) >> 2, mod);
         else {
-            for (; b != mod_pow(d, b >> 1, mod); ++d);
-            for (b = mod_pow(d, a, mod), r = mod_pow(n, (a + 1) >> 1, mod), e = mod_pow(n, a, mod), f = c; e != 1; f = a) {
-                for (a = 0, c = e, --f; c != 1 && a < f; ++a)
-                    c = multiplication_modulo(c, c, mod);
-                for (d = b, n = f - a; n--;)
-                    d = multiplication_modulo(d, d, mod);
-                r = multiplication_modulo(r, d, mod);
-                b = multiplication_modulo(d, d, mod);
-                e = multiplication_modulo(e, b, mod);
+            for (; b != mod_pow(f, b >> 1, mod); ++f);
+            for (b = mod_pow(f, d, mod), a = mod_pow(n, (d + 1) >> 1, mod), c = mod_pow(n, d, mod), g = e; c != 1; g = d) {
+                for (d = 0, e = c, --g; e != 1 && d < g; ++d)
+                    e = multiplication_modulo(e, e, mod);
+                for (f = b, n = g - d; n--;)
+                    f = multiplication_modulo(f, f, mod);
+                a = multiplication_modulo(a, f, mod);
+                b = multiplication_modulo(f, f, mod);
+                c = multiplication_modulo(c, b, mod);
             }
         }
     }
-    return r;
+    return a;
 }
 
 #include <assert.h>
