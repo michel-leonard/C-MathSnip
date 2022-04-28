@@ -13,9 +13,9 @@ static unsigned mod_pow(unsigned n, unsigned exp, const unsigned mod) {
 }
 
 // return root such that (root * root) % mod congruent to n % mod.
-// return mod (the default value of a) if no solution to the congruence exists.
+// return 0 (the default value of a) if no solution to the congruence exists.
 static unsigned tonelli_shanks(unsigned n, const unsigned mod) {
-    unsigned a = mod, b = a - 1, c, d = b, e = 0, f = 2, g;
+    unsigned a = 0, b = mod - 1, c, d = b, e = 0, f = 2, g;
     if (mod_pow(n, b >> 1, mod) == 1) {
         for (; !(d & 1); ++e, d >>= 1);
         if (e == 1)
@@ -47,7 +47,7 @@ int main() {
     assert(root == 88664850);
 
     n = 5258, mod = 3851, root = tonelli_shanks(n, mod);
-    assert(root == 3851); // no solution to the congruence exists.
+    assert(root == 0); // no solution to the congruence exists.
 }
 
 // A is assumed odd prime, the algorithm requires O(log A + r * r) multiplications modulo A, where r is the power of 2 dividing A − 1.
