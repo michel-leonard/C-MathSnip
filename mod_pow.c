@@ -1,8 +1,8 @@
 // return (lhs * rhs) % mod
-static unsigned multiplication_modulo(unsigned lhs, unsigned rhs, const unsigned mod) {
-    unsigned res = 0;
-    for (lhs %= mod, rhs%= mod; rhs; (rhs & 1) ? (res = (res + lhs) % mod) : 0, lhs = (lhs << 1) % mod, rhs >>= 1);
-    return res;
+static unsigned multiplication_modulo(unsigned a, unsigned b, unsigned mod) {
+    unsigned res = 0, tmp;
+    for (b %= mod; a; a & 1 ? b >= mod - res ? res -= mod : 0, res += b : 0, a >>= 1, (tmp = b) >= mod - b ? tmp -= mod : 0, b += tmp);
+    return res % mod;
 }
 
 // return (n ^ exp) % mod
