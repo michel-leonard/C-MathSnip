@@ -32,7 +32,7 @@ int kronecker(unsigned a, unsigned b) {
 
 #include <stdlib.h>
 
-// It's on average faster than tonelli_shanks with kronecker.
+// With kronecker it's on average faster than the tonelli_shanks implementation.
 static unsigned sqrt_mod(unsigned n, const unsigned mod) {
     unsigned a = 0, b, c, d, e;
     if (kronecker(n, mod) != -1) {
