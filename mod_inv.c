@@ -10,7 +10,7 @@ unsigned mod_inv(unsigned n, const unsigned mod) {
         d = (d & 5) | (c || f > e ? (d & 4) >> 1 : ~d & 2);
         e = c ? e + f : f > e ? f - e : e - f;
     }
-    return n ? d & 4 ? g - f : f : mod < n;
+    return n ? d & 4 ? g - f : f : 0;
 }
 
 #include <assert.h>
