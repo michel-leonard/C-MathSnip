@@ -38,10 +38,8 @@ unsigned cube_root(unsigned n){
     for (int c = 30; c >= 0; c -= 3) {
         a <<= 1;
         b = 3 * a * (a + 1) + 1;
-        if ((n >> c) >= b) {
-            n -= b << c;
-            a++;
-        }
+        if (n >> c >= b)
+            n -= b << c, ++a;
     }
     return a;
 }
