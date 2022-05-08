@@ -33,14 +33,14 @@ unsigned nth_root(const unsigned n, const unsigned nth) {
 }
 
 // return the number that, when multiplied by itself twice, makes the first number. 
-static unsigned cube_root(unsigned n){
-    unsigned a = 0, b, c;
-    for (c = 63; c >= 0; c -= 3) {
+unsigned cube_root(unsigned n){
+    unsigned a = 0, b;
+    for (int c = 30; c >= 0; c -= 3) {
         a <<= 1;
         b = 3 * a * (a + 1) + 1;
         if ((n >> c) >= b) {
             n -= b << c;
-            ++a;
+            a++;
         }
     }
     return a;
