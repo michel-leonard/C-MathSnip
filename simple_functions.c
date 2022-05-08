@@ -32,6 +32,8 @@ unsigned nth_root(const unsigned n, const unsigned nth) {
     return r;
 }
 
+#include <limits.h>
+
 // return the number that, when multiplied by itself twice, makes the first number. 
 unsigned cube_root(unsigned n){
     unsigned a = 0, b;
@@ -44,7 +46,6 @@ unsigned cube_root(unsigned n){
     return a;
 }
 
-#include <limits.h>
 // return the distance from zero of N.
 unsigned int absolute(int n){
     const int mask = n >> (sizeof(int) * CHAR_BIT - 1);
