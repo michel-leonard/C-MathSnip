@@ -34,7 +34,7 @@ unsigned nth_root(const unsigned n, const unsigned nth) {
 
 #include <limits.h>
 
-// return the number that, when multiplied by itself twice, makes the first number. 
+// return a number that, when multiplied by itself twice, makes the first number. 
 unsigned cube_root(unsigned n){
     unsigned a = 0, b;
     for (int c = sizeof(unsigned) * CHAR_BIT / 3 * 3 ; c >= 0; c -= 3) {
