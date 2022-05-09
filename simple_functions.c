@@ -6,16 +6,17 @@ unsigned gcd(unsigned a, unsigned b){
 
 // return the number that was multiplied by itself to reach N.
 unsigned square_root_1(const unsigned num) {
-    unsigned a, b, c, d;
-    for (b = a = num, c = 1; a >>= 1; ++c);
-    for (c = 1 << 30; c; c >>= 2) {
+    unsigned a = 0, b = num, c, d;
+    for (c = 1 << 30 ; c; c >>= 2) {
         d = a + c;
         a >>= 1;
         if (b >= d)
             b -= d, a += c;
     }
+    // la variable b contient le reste.
     return a;
 }
+
 
 // return the number that was multiplied by itself to reach N.
 unsigned square_root_2(unsigned n){
