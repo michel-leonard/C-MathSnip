@@ -7,9 +7,9 @@ unsigned nth_root(const unsigned n, const unsigned nth) {
 }
 
 unsigned initial_guess_nth_root(unsigned n, unsigned nth){
-    unsigned res = (n != 0) << (nth != 0);
-    if (nth) for(; n >>= nth; res <<= 1);
-    return res ;
+    unsigned res = 1;
+    for(; n >>= 1; ++res);
+    return nth ? 1 << (res + nth - 1) / nth : 0 ;
 }
 
 // return a number that, when multiplied by itself nth times, makes N.
