@@ -2,7 +2,7 @@
 unsigned square_root_1(const unsigned num) {
     unsigned a, b, c, d;
     for (b = a = num, c = 1; a >>= 1; ++c);
-    for (c = 1 << (c & -2); c; c >>= 2) {
+    for (c = 1 << 30; c; c >>= 2) {
         d = a + c;
         a >>= 1;
         if (b >= d)
