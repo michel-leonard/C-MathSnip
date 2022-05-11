@@ -1,7 +1,7 @@
 //  returns the natural logarithm (base e) of N, and -1 if the result goes to negative infinity.
 static double ln(const unsigned n) {
     static const double euler = 2.7182818284590452354;
-    int a = 0, d;
+    unsigned a = 0, d;
     double b, c, e = (double) n, f;
     if (e) {
         for (c = e; (c /= euler) > 1; ++a);
