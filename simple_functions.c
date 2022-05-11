@@ -4,9 +4,9 @@ unsigned gcd(unsigned a, unsigned b){
     return a | b;
 }
 
-// Return the number that was multiplied by itself to reach N. (30 to 62 for 64 bits)
+// Return the number that was multiplied by itself to reach N.
 static inline unsigned square_root_1(unsigned n) {
-    unsigned a = 0, b, c;
+    unsigned a = 0, b, c; // b = 1ULL << 62 for 64 bits
     for (b = 1 << 30; b; c = a + b, n -= c &= -(n >= c), a = (a >> 1) | (c & b), b >>= 2);
     // Variable n contains the remainder.
     return a;
