@@ -4,10 +4,10 @@ unsigned gcd(unsigned a, unsigned b){
     return a | b;
 }
 
-static inline qs_type native_square_root_1(unsigned n) {
-    // Return the number that was multiplied by itself to reach N.
+// Return the number that was multiplied by itself to reach N. (30 to 62 for 64 bits)
+static inline unsigned square_root_1(unsigned n) {
     unsigned a = 0, b, c;
-    for (b = 1U << 30; b; c = a + b, n -= c &= -(n >= c), a = (a >> 1) | (c & b), b >>= 2);
+    for (b = 1 << 30; b; c = a + b, n -= c &= -(n >= c), a = (a >> 1) | (c & b), b >>= 2);
     // Variable n contains the remainder.
     return a;
 }
