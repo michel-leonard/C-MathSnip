@@ -1,6 +1,6 @@
 // return a modular multiplicative inverse of n with respect to the modulus.
 // return 0 if the linear congruence has no solutions.
-unsigned modular_inverse(unsigned ra, unsigned rb) {
+unsigned mod_inv(unsigned ra, unsigned rb) {
     unsigned rc, sa = 1, sb = 0, sc, i = 0;
     if (rb > 1) do {
             rc = ra % rb;
