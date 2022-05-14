@@ -1,16 +1,16 @@
 // return a modular multiplicative inverse of n with respect to the modulus.
 // return 0 if the linear congruence has no solutions.
-unsigned mod_inv(unsigned n, const unsigned mod) {
-    unsigned a, b = mod, c, d = 0, e = 0, f = 1, g = b;
-    for (n *= b > 1; n > 1 && (n *= b > 0); f = a, d = (d & 3) | (d & 1) << 2) {
-        a = e, e *= n / (c = b);
-        b = n % b, n = c;
-        d = (d & 6) | (d & 2) >> 1;
-        c = d > 1 && d < 6;
-        d = (d & 5) | (c || f > e ? (d & 4) >> 1 : ~d & 2);
-        e = c ? e + f : f > e ? f - e : e - f;
-    }
-    return n ? d & 4 ? g - f : f : 0;
+unsigned modular_inverse(unsigned ra, unsigned rb) {
+    unsigned rc, sa = 1, sb = 0, sc, i = 0;
+    if (rb > 1) do {
+            rc = ra % rb;
+            sc = sa - (ra / rb) * sb;
+            sa = sb, sb = sc;
+            ra = rb, rb = rc;
+        } while (++i, rc);
+    sa *= (i *= ra == 1) != 0;
+    sa += (i & 1) * sb;
+    return sa;
 }
 
 #include <assert.h>
