@@ -1,3 +1,5 @@
+// You can try this ~100 lines C implementation of Pollard Rho
+
 #include <stdlib.h>
 #include <stdint.h>
 
