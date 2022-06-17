@@ -26,12 +26,10 @@ static unsigned tonelli_shanks_1(const unsigned n, const unsigned mod) {
 				res = mod_pow(a, (mod + 1) >> 2, mod);
 				break;
 			case 5 :
-				f = mod_pow(a, (mod + 3) >> 3, mod);
-				if (multiplication_modulo(f, f, mod) == a)
-					res = f;
-				else {
+				res = mod_pow(a, (mod + 3) >> 3, mod);
+				if (multiplication_modulo(res, res, mod) != a){
 					b = mod_pow(2, (mod - 1) >> 2, mod);
-					res = multiplication_modulo(f, b, mod);
+					res = multiplication_modulo(res, b, mod);
 				}
 				break;
 			default :
