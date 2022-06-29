@@ -1,3 +1,6 @@
+// Integer factorization in C language.
+// Integer factorization is the decomposition of a composite number into a product of smaller integers.
+
 unsigned long long pollard_rho(const unsigned long long N) {
 	// Require : N is a composite number, not a square.
 	// Ensure : res is a non-trivial factor of N.
