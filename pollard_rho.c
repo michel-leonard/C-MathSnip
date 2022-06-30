@@ -19,7 +19,7 @@ unsigned long long pollard_rho(const unsigned long long N) {
 		a = y, b = y;
 		for (y = 0; a; a & 1 ? b >= N - y ? y -= N : 0, y += b : 0, a >>= 1, (c = b) >= N - b ? c -= N : 0, b += c);
 		y = (1 + y) % N;
-		for (a = N, b = y > x ? y - x : x - y; (a %= b) && (b %= a););
+		for (a = y > x ? y - x : x - y, b = N; (a %= b) && (b %= a););
 		res = a | b;
 	}
 	return res;
