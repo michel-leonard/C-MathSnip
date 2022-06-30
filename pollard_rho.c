@@ -3,26 +3,26 @@
 
 unsigned long long pollard_rho(const unsigned long long N) {
 	// Require : N is a composite number, not a square.
-	// Ensure : res is a non-trivial factor of N.
+	// Ensure : gcd is a non-trivial factor of N.
 	// Option : change the timeout, change the rand function.
 	static const int timeout = 18;
 	static unsigned long long rand_val = 2994439072U;
 	rand_val = (rand_val * 1025416097U + 286824428U) % 4294967291LLU;
-	unsigned long long res = 1, a, b, c, i = 0, j = 1, x = 1, y = 1 + rand_val % (N - 1);
-	for (; res == 1; ++i) {
+	unsigned long long gcd = 1, a, b, c, i = 0, j = 1, x = 1, y = 1 + rand_val % (N - 1);
+	for (; gcd == 1; ++i) {
 		if (i == j) {
 			if (j >> timeout)
 				break;
 			j <<= 1;
-			x = y;
+			x = y; // "x" takes the previous value of "y" when "i" is a power of 2.
 		}
-		a = y, b = y;
+		a = y, b = y; // computes y = f(y)
 		for (y = 0; a; a & 1 ? b >= N - y ? y -= N : 0, y += b : 0, a >>= 1, (c = b) >= N - b ? c -= N : 0, b += c);
-		y = (1 + y) % N;
+		y = (1 + y) % N; // function f performed f(y) = (y * y + 1) % N
 		for (a = y > x ? y - x : x - y, b = N; (a %= b) && (b %= a););
-		res = a | b;
+		gcd = a | b; // the GCD(abs(y - x), N) was computed, continue until it's a non-trivial divisor of N.
 	}
-	return res;
+	return gcd;
 }
 
 #include <stdio.h>
